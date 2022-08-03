@@ -4,7 +4,7 @@
 
 A tool for generating random unique artworks using given image layers.
 
-## Installation
+## Installation🔌
 
 You can download the source code from [here](https://github.com/Theshawa/artwork-generator/archive/refs/heads/main.zip). If you have git installed in your pc, open your terminal and try this command.
 
@@ -13,7 +13,7 @@ git clone https://github.com/Theshawa/artwork-generator.git
 ```
 ---
 
-## Usage
+## Usage 📑
 
 From here consider the `./bin` directory as the root directory. No need to visit any other folder outside `./bin` folder.
 
@@ -21,7 +21,7 @@ If you want a quick run, open the `artwork-generator.exe` and continue with that
 
 ---
 
-## Configuration
+## Configuration 🔧
 
 There are two main things you have to concern when using this tool, and these are `layers` directory and `config.json` file.
 
@@ -147,7 +147,7 @@ This is the complete configuration with default values.
 
 ---
 
-# Finally
+# Finally 😁
 
 If you found any bugs please notice me.
 My Email : [mrclocktd@gmail.com](mailto:mrclocktd@gmail.com)
