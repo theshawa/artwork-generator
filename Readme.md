@@ -2,7 +2,7 @@
 
 ![Artwork Generator Cover Image](assets/cover-image.png)
 
-A tool for generating random unique artworks using given image layers.
+A tool for generating random unique artworks for NFT based projects
 
 ## Installation🔌
 
