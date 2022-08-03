@@ -6,7 +6,7 @@ A tool for generating random unique artworks for NFT based projects
 
 ## Installation🔌
 
-You can download the source code from [here](https://github.com/Theshawa/artwork-generator/archive/refs/heads/main.zip). If you have git installed in your pc, open your terminal and try this command.
+You can download the source code from [here](https://github.com/Theshawa/artwork-generator/archive/refs/heads/main.zip). If you have git installed in your computer, open your terminal and try this command.
 
 ```bash
 git clone https://github.com/Theshawa/artwork-generator.git
@@ -15,9 +15,19 @@ git clone https://github.com/Theshawa/artwork-generator.git
 
 ## Usage 📑
 
-From here consider the `./bin` directory as the root directory. No need to visit any other folder outside `./bin` folder.
+From here consider `./bin` directory as the root directory. No need to visit anywhere outside `./bin` directory to continue.
 
-If you want a quick run, open the `artwork-generator.exe` and continue with that.
+**Windows**
+Directly open `artwork-generator.exe` and continue.
+
+**Mac**
+Open your terminal from  `./bin` directory. Type this command and hit enter.
+
+```Bash
+chmod +x artwork-generator
+```
+
+Then open `artwork-generator` and continue.
 
 ---
 
@@ -73,7 +83,7 @@ This is the main configuration file of this program. You can change the behaviou
     - `export` (true/false) : enable or disable gif export
     - `repeat` (number) : repeat value of the gif artwork. 0 means infinite repeat.
     - `delay` (number) : delay of gif. default is 50.
-7. `metadata` : metadata for each generative artwork. 
+7. `metadata` : *NFT* metadata for each generative artwork. 
     - `export` (true/false) : enable or disable metadata export
     Only the common fields are here, others will be generated automatically.
     Visit [https://docs.opensea.io/docs/metadata-standards](https://docs.opensea.io/docs/metadata-standards) and [https://docs.metaplex.com/programs/token-metadata/token-standard](https://docs.metaplex.com/programs/token-metadata/token-standard) for the reference.
