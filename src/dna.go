@@ -37,14 +37,15 @@ func CreateDNA(layers *[]Layer) DNA {
 	for _, layer := range *layers {
 		elements := layer.Elements
 
-		// Generate Total Weight
+		// generating total weight
 		total_weight := 0
 		for _, element := range elements {
 			total_weight += element.Weight
 		}
+
 		random := rand.Intn(total_weight)
 
-		// Get best element according to the element's weight
+		// extracting random element
 		for _, element := range elements {
 			random -= element.Weight
 			if random < 0 {
@@ -56,7 +57,6 @@ func CreateDNA(layers *[]Layer) DNA {
 	return dna
 }
 
-// Check Uniqueness
 func IsUnique(dna_list *[]string, check_dna *DNA) bool {
 	for _, dna := range *dna_list {
 		if dna == check_dna.GetCleanString() {
@@ -71,20 +71,30 @@ func GenerateDNAs(layers []Layer, count int, dna_queue chan DNA, config Config) 
 
 	for i := 0; i < count; i++ {
 		for {
+
 			new_dna := CreateDNA(&layers)
+
 			dna_string := new_dna.GetCleanString()
+
 			if IsUnique(&dna_list, &new_dna) {
+
 				dna_list = append(dna_list, dna_string)
+
 				dna_queue <- new_dna
+
 				if config.Debugging {
 					Console.Log("(%v) dna created: %v", i+1, new_dna.GetCleanString())
 				}
+
 				break
 			}
+
 			if config.Debugging {
 				Console.Warning("(%v) dna exists: %v", i+1, new_dna.GetCleanString())
 			}
 		}
 	}
+
+	// closing dna_queue channel
 	close(dna_queue)
 }

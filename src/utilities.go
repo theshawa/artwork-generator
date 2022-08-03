@@ -18,19 +18,20 @@ func ValidathPath(path string) bool {
 		return true
 	}
 
-	// Attempt to create it
+	// attempting to create it
 	var d []byte
 	if err := ioutil.WriteFile(path, d, 0644); err == nil {
-		os.Remove(path) // And delete it
+		// deleting created dire
+		os.Remove(path)
 		return true
 	}
 
 	return false
 }
 
-var errInvalidFormat = errors.New("invalid background color provided!!! please add like `#f2d3a2`")
-
 func ParseHexColor(s string) (c color.RGBA, err error) {
+
+	errInvalidFormat := errors.New("invalid background color provided!!! please add like `#f2d3a2`")
 	c.A = 0xff
 
 	if s[0] != '#' {

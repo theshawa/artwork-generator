@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -19,6 +20,7 @@ func (logger Logger) Error(message string, params ...any) {
 	ct.Foreground(ct.Red, true)
 	log.Printf(logger.ErrorIcon+"  "+message, params...)
 	ct.ResetColor()
+	fmt.Println("\npress any key to continue...")
 	Scanner.Scan()
 	logger.Loading("closing application")
 	os.Exit(1)

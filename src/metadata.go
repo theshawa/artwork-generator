@@ -67,15 +67,19 @@ type SolMetaData struct {
 
 func GenerateArtworkMetaData(config *Config, dna DNA, file_name string, file_type string, edition string) {
 	metadata := config.Metadata
+
 	var data any
+
 	attributes := []Attribute{}
 
+	// extracting attributes from dna
 	for _, base := range dna {
 		attributes = append(attributes, Attribute{
 			TraitType: base.Type,
 			Value:     base.Name,
 		})
 	}
+
 	if metadata.Network == "sol" {
 		data = SolMetaData{
 			Name:                 config.Artwork.Prefix + "-" + edition,
@@ -109,12 +113,14 @@ func GenerateArtworkMetaData(config *Config, dna DNA, file_name string, file_typ
 			Compiler:    "Artwork Generator Developed By Theshawa Dasun",
 		}
 	}
+
 	output_file_name := GetFileName(edition+".json", config.Artwork.Prefix)
 
 	folder_name := "json"
 	if file_type == "image/gif" {
 		folder_name = "gif-json"
 	}
+
 	output_path := config.OutputDirectory + folder_name + "/" + output_file_name
 
 	file, err := os.Create(output_path)

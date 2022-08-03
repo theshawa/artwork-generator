@@ -11,22 +11,18 @@ import (
 	"strconv"
 )
 
-func GetOpacity(opacity float32) float32 {
-	if opacity > 1 {
-		return opacity / 100
-	}
-	return opacity
-}
-
 func GetFileName(name string, prefix string) string {
 	if prefix != "" {
 		return prefix + "-" + name
 	}
+
 	return name
 }
 
 func GetCompressionLevel(val uint8) png.CompressionLevel {
+
 	cl := png.DefaultCompression
+
 	switch val {
 	case 0:
 		cl = png.BestSpeed
@@ -37,13 +33,15 @@ func GetCompressionLevel(val uint8) png.CompressionLevel {
 	case 3:
 		cl = png.BestCompression
 	}
-	return png.CompressionLevel(cl)
 
+	return png.CompressionLevel(cl)
 }
 
 func CreateArtwork(dna DNA, config Config, index int) {
 	container := image.Rect(0, 0, int(config.Artwork.Width), int(config.Artwork.Height))
+
 	img := image.NewRGBA(container)
+
 	number := strconv.Itoa(index + 1)
 
 	if config.Artwork.Background != "" {
@@ -65,10 +63,15 @@ func CreateArtwork(dna DNA, config Config, index int) {
 		if err != nil {
 			Console.Error("unable to read %v due to an error: %v", base.Path, err)
 		}
-		mask := image.NewUniform(color.Alpha{uint8(255 * GetOpacity(base.Opacity))})
+
+		// adding opacity
+		mask := image.NewUniform(color.Alpha{uint8(255 * base.Opacity)})
+
 		draw.DrawMask(img, container, sub_img, image.Point{}, mask, image.Point{}, draw.Over)
 	}
+
 	encoder := png.Encoder{CompressionLevel: GetCompressionLevel(config.Artwork.CompressionLevel)}
+
 	file_name := GetFileName(number+".png", config.Artwork.Prefix)
 	file_path := config.OutputDirectory + "images/" + file_name
 
@@ -82,6 +85,7 @@ func CreateArtwork(dna DNA, config Config, index int) {
 	if err != nil {
 		Console.Error("unable to encode %v due to an error: %v", img, err)
 	}
+
 	if config.Metadata.Export {
 		GenerateArtworkMetaData(&config, dna, file_name, "image/png", number)
 	}
@@ -91,10 +95,11 @@ func CreateArtwork(dna DNA, config Config, index int) {
 
 func CreateGifArtwork(dna DNA, config Config, index int) {
 	container := image.Rect(0, 0, int(config.Artwork.Width), int(config.Artwork.Height))
+
 	delays := []int{}
 	gif_images := []*image.Paletted{}
+
 	number := strconv.Itoa(index + 1)
-	disposals := []byte{}
 
 	for _, base := range dna {
 		file, err := os.Open(base.Path)
@@ -110,29 +115,31 @@ func CreateGifArtwork(dna DNA, config Config, index int) {
 
 		palettedImg := image.NewPaletted(container, palette.Plan9)
 
-		// Add Opacity
-		mask := image.NewUniform(color.Alpha{uint8(255 * GetOpacity(base.Opacity))})
+		// adding opacity
+		mask := image.NewUniform(color.Alpha{uint8(255 * base.Opacity)})
+
 		draw.DrawMask(palettedImg, container, gif_img, image.Point{}, mask, image.Point{}, draw.Over)
 
 		gif_images = append(gif_images, palettedImg)
 
-		// Add Delay
-		disposals = append(disposals, gif.DisposalPrevious)
+		// adding delays
 		delays = append(delays, int(config.Gif.Delay))
 
 	}
+
 	anim := gif.GIF{
 		Delay:     delays,
 		Image:     gif_images,
 		LoopCount: config.Gif.Repeat,
-		Disposal:  disposals,
 		Config: image.Config{
 			Width:  int(config.Artwork.Width),
 			Height: int(config.Artwork.Height),
 		},
 	}
+
 	gif_file_name := GetFileName(number+".gif", config.Artwork.Prefix)
 	gif_file_path := config.OutputDirectory + "gifs/" + gif_file_name
+
 	writer, err := os.Create(gif_file_path)
 	if err != nil {
 		Console.Error("unable to create %v due to an error: %v", gif_file_path, err)
