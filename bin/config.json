@@ -1,0 +1,73 @@
+{
+  "layers_directory": "layers",
+  "output_directory": "out",
+  "delimitter": "^",
+  "gif": {
+    "export": true,
+    "repeat": 0,
+    "delay": 1
+  },
+  "artwork": {
+    "prefix": "art",
+    "width": 512,
+    "height": 512,
+    "compression_level": 0,
+    "background": ""
+  },
+  "metadata": {
+    "export": true,
+    "network": "sol",
+    "description": "Friendly OpenSea Creature that enjoys long swims in the ocean.",
+    "base_url": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs",
+    "background_color": "#000000",
+    "youtube_url": "https://theshawa.cf",
+    "solana": {
+      "symbol": "YC",
+      "seller_fee_basis_points": 1000,
+      "external_url": "https://theshawa.cf",
+      "creators": [
+        {
+          "address": "xEtQ9Fpv62qdc1GYfpNReMasVTe9YW5bHJwfVKqo72u",
+          "share": 100
+        }
+      ]
+    }
+  },
+  "layers": [
+    {
+      "name": "background",
+      "opacity": 1,
+      "by_pass_dna": false
+    },
+    {
+      "name": "eyeball",
+      "opacity": 1,
+      "by_pass_dna": false
+    },
+    {
+      "name": "eye-color",
+      "opacity": 1,
+      "by_pass_dna": false
+    },
+    {
+      "name": "iris",
+      "opacity": 1,
+      "by_pass_dna": false
+    },
+    {
+      "name": "shine",
+      "opacity": 1,
+      "by_pass_dna": false
+    },
+    {
+      "name": "bottom-lid",
+      "opacity": 1,
+      "by_pass_dna": false
+    },
+    {
+      "name": "top-lid",
+      "opacity": 1,
+      "by_pass_dna": false
+    }
+  ]
+}
