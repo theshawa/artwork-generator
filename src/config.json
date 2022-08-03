@@ -11,13 +11,13 @@
     "background": ""
   },
   "gif": {
-    "export": false,
+    "export": true,
     "repeat": 0,
     "delay": 50
   },
   "metadata": {
     "export": true,
-    "network": "sol",
+    "network": "eth",
     "description": "Friendly OpenSea Creature that enjoys long swims in the ocean.",
     "base_url": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs",
     "background_color": "#000000",
@@ -36,7 +36,12 @@
   },
   "layers": [
     {
-      "name": "eyes",
+      "name": "left-eye",
+      "opacity": 1,
+      "bypass_dna": false
+    },
+    {
+      "name": "right-eye",
       "opacity": 1,
       "bypass_dna": false
     },

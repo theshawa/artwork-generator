@@ -6,6 +6,7 @@ import (
 	"log"
 	"math/rand"
 	"os"
+	"runtime"
 	"strconv"
 	"time"
 
@@ -27,6 +28,9 @@ type Layer struct {
 var Scanner = bufio.NewScanner(os.Stdin)
 
 func main() {
+	// setting threads
+	runtime.GOMAXPROCS(2)
+
 	// seeding random
 	rand.Seed(time.Now().UnixNano())
 
@@ -80,7 +84,7 @@ func main() {
 	Console.Loading("starting engine")
 
 	fmt.Println()
-
+	start_time := time.Now().Unix()
 	// generating dnas
 	dna_queue := make(chan DNA)
 
@@ -101,7 +105,10 @@ func main() {
 
 	fmt.Println()
 
+	time_elapsed := time.Now().Unix() - start_time
 	Console.Success("%v unique artworks generated successfully at %v", count, config.OutputDirectory)
+	fmt.Println()
+	Console.Log("Time elapsed : %v seconds", time_elapsed)
 
 	ct.Foreground(ct.Cyan, true)
 
