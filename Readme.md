@@ -1,4 +1,6 @@
-# Artwork Generator
+![Artwork Generator Title](assets/title.png)
+
+![Artwork Generator Cover Image](assets/cover-image.png)
 
 A tool for generating random unique artworks using given image layers.
 
@@ -31,7 +33,7 @@ Layers are building blocks of the artworks. Each layer must have one or more ele
 You must include layers and elements inside `layers` directory like below, so program can identify them.
 Elements must be in **.png** format.
 
-![How the layers directory looks like](layers.png)
+![How the layers directory looks like](assets/layers.png)
 
 Notice that evelry element is named according to a format like this.
 
@@ -97,9 +99,9 @@ This is the complete configuration with default values.
     "background": ""
   },
   "gif": {
-    "export": true,
+    "export": false,
     "repeat": 0,
-    "delay": 1
+    "delay": 50
   },
   "metadata": {
     "export": true,
@@ -107,7 +109,7 @@ This is the complete configuration with default values.
     "description": "Friendly OpenSea Creature that enjoys long swims in the ocean.",
     "base_url": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs",
     "background_color": "#000000",
-    "youtube_url": "https://theshawa.cf",
+    "youtube_url": "--your-youtube-url--",
     "solana": {
       "symbol": "YC",
       "seller_fee_basis_points": 1000,
@@ -122,42 +124,23 @@ This is the complete configuration with default values.
   },
   "layers": [
     {
-      "name": "background",
+      "name": "eyes",
       "opacity": 1,
       "bypass_dna": false
     },
     {
-      "name": "eyeball",
+      "name": "mouth",
       "opacity": 1,
       "bypass_dna": false
     },
     {
-      "name": "eye-color",
-      "opacity": 1,
-      "bypass_dna": false
-    },
-    {
-      "name": "iris",
-      "opacity": 1,
-      "bypass_dna": false
-    },
-    {
-      "name": "shine",
-      "opacity": 1,
-      "bypass_dna": false
-    },
-    {
-      "name": "bottom-lid",
-      "opacity": 1,
-      "bypass_dna": false
-    },
-    {
-      "name": "top-lid",
+      "name": "nose",
       "opacity": 1,
       "bypass_dna": false
     }
   ]
 }
+
 
 ```
 

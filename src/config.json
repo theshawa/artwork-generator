@@ -11,9 +11,9 @@
     "background": ""
   },
   "gif": {
-    "export": true,
+    "export": false,
     "repeat": 0,
-    "delay": 1
+    "delay": 50
   },
   "metadata": {
     "export": true,
@@ -21,7 +21,7 @@
     "description": "Friendly OpenSea Creature that enjoys long swims in the ocean.",
     "base_url": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs",
     "background_color": "#000000",
-    "youtube_url": "https://theshawa.cf",
+    "youtube_url": "--your-youtube-url--",
     "solana": {
       "symbol": "YC",
       "seller_fee_basis_points": 1000,
@@ -36,37 +36,17 @@
   },
   "layers": [
     {
-      "name": "background",
+      "name": "eyes",
       "opacity": 1,
       "bypass_dna": false
     },
     {
-      "name": "eyeball",
+      "name": "mouth",
       "opacity": 1,
       "bypass_dna": false
     },
     {
-      "name": "eye-color",
-      "opacity": 1,
-      "bypass_dna": false
-    },
-    {
-      "name": "iris",
-      "opacity": 1,
-      "bypass_dna": false
-    },
-    {
-      "name": "shine",
-      "opacity": 1,
-      "bypass_dna": false
-    },
-    {
-      "name": "bottom-lid",
-      "opacity": 1,
-      "bypass_dna": false
-    },
-    {
-      "name": "top-lid",
+      "name": "nose",
       "opacity": 1,
       "bypass_dna": false
     }
