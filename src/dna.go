@@ -66,13 +66,13 @@ func IsUnique(dna_list *[]string, check_dna *DNA) bool {
 	return true
 }
 
-func GenerateDNAs(layers []Layer, count int, dna_queue chan DNA, config Config) {
+func GenerateDNAs(layers *[]Layer, count int, dna_queue *chan DNA, config *Config) {
 	dna_list := []string{}
 
 	for i := 0; i < count; i++ {
 		for {
 
-			new_dna := CreateDNA(&layers)
+			new_dna := CreateDNA(layers)
 
 			dna_string := new_dna.GetCleanString()
 
@@ -80,7 +80,7 @@ func GenerateDNAs(layers []Layer, count int, dna_queue chan DNA, config Config) 
 
 				dna_list = append(dna_list, dna_string)
 
-				dna_queue <- new_dna
+				*dna_queue <- new_dna
 
 				if config.Debugging {
 					Console.Log("(%v) dna created: %v", i+1, new_dna.GetCleanString())
@@ -96,5 +96,5 @@ func GenerateDNAs(layers []Layer, count int, dna_queue chan DNA, config Config) 
 	}
 
 	// closing dna_queue channel
-	close(dna_queue)
+	close(*dna_queue)
 }

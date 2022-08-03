@@ -37,7 +37,7 @@ func GetCompressionLevel(val uint8) png.CompressionLevel {
 	return png.CompressionLevel(cl)
 }
 
-func CreateArtwork(dna DNA, config Config, index int) {
+func CreateArtwork(dna *DNA, config *Config, index int) {
 	container := image.Rect(0, 0, int(config.Artwork.Width), int(config.Artwork.Height))
 
 	img := image.NewRGBA(container)
@@ -52,7 +52,7 @@ func CreateArtwork(dna DNA, config Config, index int) {
 		draw.Draw(img, container, &image.Uniform{bg}, image.Point{}, draw.Src)
 	}
 
-	for _, base := range dna {
+	for _, base := range *dna {
 		file, err := os.Open(base.Path)
 		if err != nil {
 			Console.Error("unable to open %v due to an error: %v", base.Path, err)
@@ -87,13 +87,13 @@ func CreateArtwork(dna DNA, config Config, index int) {
 	}
 
 	if config.Metadata.Export {
-		GenerateArtworkMetaData(&config, dna, file_name, "image/png", number)
+		GenerateArtworkMetaData(config, dna, &file_name, "image/png", &number)
 	}
 
 	Console.Success("(%v) new artwork generated with dna: %v", index+1, dna.GetId())
 }
 
-func CreateGifArtwork(dna DNA, config Config, index int) {
+func CreateGifArtwork(dna *DNA, config *Config, index int) {
 	container := image.Rect(0, 0, int(config.Artwork.Width), int(config.Artwork.Height))
 
 	delays := []int{}
@@ -101,7 +101,7 @@ func CreateGifArtwork(dna DNA, config Config, index int) {
 
 	number := strconv.Itoa(index + 1)
 
-	for _, base := range dna {
+	for _, base := range *dna {
 		file, err := os.Open(base.Path)
 		if err != nil {
 			Console.Error("unable to open %v due to an error: %v", base.Path, err)
@@ -152,7 +152,7 @@ func CreateGifArtwork(dna DNA, config Config, index int) {
 	}
 
 	if config.Metadata.Export {
-		GenerateArtworkMetaData(&config, dna, gif_file_name, "image/gif", number)
+		GenerateArtworkMetaData(config, dna, &gif_file_name, "image/gif", &number)
 	}
 
 	Console.Success("(%v) new gif generated with dna: %v", index+1, dna.GetId())

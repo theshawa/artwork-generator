@@ -65,7 +65,7 @@ type SolMetaData struct {
 	Properties           SolProperties `json:"properties"`
 }
 
-func GenerateArtworkMetaData(config *Config, dna DNA, file_name string, file_type string, edition string) {
+func GenerateArtworkMetaData(config *Config, dna *DNA, file_name *string, file_type string, edition *string) {
 	metadata := config.Metadata
 
 	var data any
@@ -73,7 +73,7 @@ func GenerateArtworkMetaData(config *Config, dna DNA, file_name string, file_typ
 	attributes := []Attribute{}
 
 	// extracting attributes from dna
-	for _, base := range dna {
+	for _, base := range *dna {
 		attributes = append(attributes, Attribute{
 			TraitType: base.Type,
 			Value:     base.Name,
@@ -82,18 +82,18 @@ func GenerateArtworkMetaData(config *Config, dna DNA, file_name string, file_typ
 
 	if metadata.Network == "sol" {
 		data = SolMetaData{
-			Name:                 config.Artwork.Prefix + "-" + edition,
+			Name:                 config.Artwork.Prefix + "-" + *edition,
 			Symbol:               metadata.Solana.Symbol,
 			Description:          metadata.Description,
 			SellerFeeBasisPoints: metadata.Solana.SellerFeeBasisPoints,
-			Image:                file_name,
+			Image:                *file_name,
 			ExternalUrl:          metadata.Solana.ExternalUrl,
-			Edition:              edition,
+			Edition:              *edition,
 			Attributes:           attributes,
 			Properties: SolProperties{
 				Files: []File{
 					{
-						Uri:  file_name,
+						Uri:  *file_name,
 						Type: file_type,
 					},
 				},
@@ -103,18 +103,18 @@ func GenerateArtworkMetaData(config *Config, dna DNA, file_name string, file_typ
 		}
 	} else {
 		data = EthMetaData{
-			Name:        config.Artwork.Prefix + "-" + edition,
+			Name:        config.Artwork.Prefix + "-" + *edition,
 			Description: metadata.Description,
-			Image:       file_name,
+			Image:       *file_name,
 			Dna:         dna.GetId(),
-			Edition:     edition,
+			Edition:     *edition,
 			Date:        time.Now().Unix(),
 			Attributes:  attributes,
 			Compiler:    "Artwork Generator Developed By Theshawa Dasun",
 		}
 	}
 
-	output_file_name := GetFileName(edition+".json", config.Artwork.Prefix)
+	output_file_name := GetFileName(*edition+".json", config.Artwork.Prefix)
 
 	folder_name := "json"
 	if file_type == "image/gif" {

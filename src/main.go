@@ -84,16 +84,16 @@ func main() {
 	// generating dnas
 	dna_queue := make(chan DNA)
 
-	go GenerateDNAs(layers, count, dna_queue, config)
+	go GenerateDNAs(&layers, count, &dna_queue, &config)
 
 	// generating_artworks
 	generated_artworks_count := 0
 	for dna := range dna_queue {
 
-		CreateArtwork(dna, config, generated_artworks_count)
+		CreateArtwork(&dna, &config, generated_artworks_count)
 
 		if config.Gif.Export {
-			CreateGifArtwork(dna, config, generated_artworks_count)
+			CreateGifArtwork(&dna, &config, generated_artworks_count)
 		}
 
 		generated_artworks_count++
