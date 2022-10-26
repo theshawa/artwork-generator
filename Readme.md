@@ -163,7 +163,7 @@ If you found any bugs please notice me.
 My Email : [mrclocktd@gmail.com](mailto:mrclocktd@gmail.com)
 
 
-Visit [https://theshawa.cf](https://theshawa.cf) to see more.
+Visit [https://theshawa-dev.web.app](https://theshawa-dev.web.app) to see more.
 
 Thank you. 
 Have a great day.
